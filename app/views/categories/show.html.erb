@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+
+	<div class="container card bg-light">
+<p>
+  <strong>Nombre:</strong>
+  <%= @category.name %>
+</p>
+
+
+
+<%= form_with(model: [ @category, @product ]) do |form| %>
+<%= form.label :Nombre %>
+<%= form.text_field :name, id: :product_name %> <br>
+<%= form.label :Precio %>
+<%= form.text_field :price, id: :product_price %> <br> <br>
+
+<%= form.submit :Guardar, class: "btn btn-primary" %> <br>
+
+<%end  %>
+<br>
+
+</div>
+<br>
+<br>
+<%= link_to 'Editar ', edit_category_path(@category), class: "btn btn-light"  %> 
+<%= link_to 'Atras', categories_path, class: "btn btn-light" %>
+
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      
+      <th>Precio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+         
+      <td><%= product.price %></td>  
+    
+    <td><%= link_to 'Borrar', category_product_path(@category, product), method: :delete, class: "btn btn-danger", data: { confirm: 'Estas Seguro' } %></td>
+      </tr>
+       
+    <% end %>
+
+  </tbody>
+</div>
+</table>
+
+
